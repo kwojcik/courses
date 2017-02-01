@@ -34,8 +34,8 @@ import keras
 from keras import backend as K
 from keras.utils.data_utils import get_file
 from keras.utils import np_utils
-from keras.utils.np_utils import to_categorical
-from keras.models import Sequential, Model
+from keras.utils.np_utils import 
+zfrom keras.models import Sequential, Model
 from keras.layers import Input, Embedding, Reshape, merge, LSTM, Bidirectional
 from keras.layers import TimeDistributed, Activation, SimpleRNN, GRU
 from keras.layers.core import Flatten, Dense, Dropout, Lambda
@@ -250,4 +250,3 @@ class MixIterator(object):
             n0 = np.concatenate([n[0] for n in nexts])
             n1 = np.concatenate([n[1] for n in nexts])
             return (n0, n1)
-
