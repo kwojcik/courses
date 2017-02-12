@@ -6,8 +6,9 @@ def get_paths(base_path):
     train_path = base_path + '/train'
     valid_path = base_path + '/valid'
     test_path = base_path + '/test'
+    resource_path = base_path + '/resources'
 
-    return train_path, valid_path, test_path
+    return train_path, valid_path, test_path, resource_path
 
 def plot_images(imgs, figsize=(12,6), per_row=4, titles=None):
     if type(imgs[0]) is np.ndarray:
@@ -21,3 +22,17 @@ def plot_images(imgs, figsize=(12,6), per_row=4, titles=None):
         if titles != None:
             sp.set_title(titles[i], fontsize=18)
         plt.imshow(img)
+
+def onehot(batches):
+    num_classes = len(batches.class_indices)
+    return np.equal(batches.classes, np.matrix(np.arange(num_classes)).T).T.astype(int)
+
+def onehot(batches):
+    num_classes = len(batches.class_indices)
+    return np.equal(batches.classes, np.matrix(np.arange(num_classes)).T).T.astype(int)
+def multiclass_logloss_rowscaled(batches, preds):
+    preds = np.clip(preds, 0.0001, 0.9999)
+    sums = np.matrix(np.sum(preds, axis=1)).T
+    preds = np.divide(preds, sums)
+    oh = onehot(batches)
+    return (-1.0/batches.N) * np.sum(np.multiply(oh, np.log(preds)))

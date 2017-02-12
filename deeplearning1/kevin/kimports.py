@@ -4,7 +4,10 @@ kimports is a collection of imports from various libraries such as Keras, numpy,
 import math
 
 import keras.preprocessing.image
+import keras.utils.data_utils
 
 import numpy as np
+
+import bcolz
 
 import matplotlib.pyplot as plt
